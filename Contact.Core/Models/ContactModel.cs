@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contact.Core.Models
 {
-    public class Contact : BaseModel
+    public class ContactModel : BaseModel
     {
         public int OwnerId { get; set; }
     }

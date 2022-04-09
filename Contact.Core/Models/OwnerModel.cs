@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Contact.Core.Models
 {
-    public class Owner : BaseModel
+    public class OwnerModel : BaseModel
     {
-        public Owner()
+        public OwnerModel()
         {
-            Contacts = new Collection<Contact>();
+            Contacts = new Collection<ContactModel>();
         }
-        public ICollection<Contact> Contacts { get; set; }
+        public ICollection<ContactModel> Contacts { get; set; }
     }
 }
