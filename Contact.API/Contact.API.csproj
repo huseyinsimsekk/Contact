@@ -8,4 +8,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Contact.Core\Contact.Core.csproj" />
+    <ProjectReference Include="..\Contact.Service\Contact.Service.csproj" />
+  </ItemGroup>
+
 </Project>
