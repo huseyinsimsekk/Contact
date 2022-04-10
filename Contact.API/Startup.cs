@@ -1,4 +1,9 @@
+using Contact.Core.Contracts;
+using Contact.Core.Contracts.Repositories;
+using Contact.Core.Contracts.Services;
 using Contact.Data;
+using Contact.Data.Repositories;
+using Contact.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,6 +41,11 @@ namespace Contact.API
                 });
             });
 
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IService<>), typeof(Service<>));
+            services.AddScoped<IOwnerService, OwnerService>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

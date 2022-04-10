@@ -1,5 +1,6 @@
-﻿using Contact.Core.Contracts.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Contact.Core.Contracts;
+using Contact.Core.Contracts.Repositories;
+using Contact.Core.Contracts.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,16 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contact.Data.Repositories
+namespace Contact.Service.Services
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Service<T> : IService<T> where T : class
     {
-        protected readonly MainContext _context;
-        private readonly DbSet<T> _dbSet;
-        public Repository(MainContext context)
+        public readonly IUnitOfWork _unitOfWork;
+        public readonly IRepository<T> _repository;
+        public Service(IUnitOfWork unitOfWork, IRepository<T> repository)
         {
-            _context = context;
-            _dbSet = context.Set<T>();
+            _unitOfWork = unitOfWork;
+            _repository = repository;
         }
         public void Add(T Entity)
         {
@@ -30,7 +31,7 @@ namespace Contact.Data.Repositories
 
         public T GetById(int Id)
         {
-            return _dbSet.Find(Id);
+            return _repository.GetById(Id);
         }
 
         public T SingleOrDefault(Expression<Func<T, bool>> predicate)
