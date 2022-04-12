@@ -10,7 +10,7 @@ namespace Contact.Core.Contracts.Services
     public interface IContactService : IService<ContactModel>
     {
         ContactModel SearchByKey(string key, string value);
-
         List<ContactModel> GetContactsByOwner(int ownerId);
+        void Delete(int id);
     }
 }

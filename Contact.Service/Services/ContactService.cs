@@ -17,6 +17,14 @@ namespace Contact.Service.Services
         {
         }
 
+        public void Delete(int id)
+        {
+            var model = _repository.GetById(id);
+            if (model is null) return;
+            model.IsDeleted = true;
+            _unitOfWork.Commit();
+        }
+
         public List<ContactModel> GetContactsByOwner(int ownerId)
         {
             return _unitOfWork.ContactRepository.GetContactsByOwner(ownerId);
