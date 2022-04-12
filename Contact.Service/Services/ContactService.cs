@@ -30,22 +30,29 @@ namespace Contact.Service.Services
             return _unitOfWork.ContactRepository.GetContactsByOwner(ownerId);
         }
 
-        public ContactModel SearchByKey(string key, string value)
+        public ContactModel SearchByKey(int ownerId, string key, string value)
         {
             if (!_allowedKeys.Contains(key)) return null;
             switch (key.ToLower())
             {
                 case "phone":
-                    return _unitOfWork.ContactRepository.SearchContact(m => m.PhoneNumber == value);
+                    return _unitOfWork.ContactRepository.SearchContact(m => m.PhoneNumber == value && m.OwnerId == ownerId);
                 case "address":
-                    return _unitOfWork.ContactRepository.SearchContact(m => m.Address == value);
+                    return _unitOfWork.ContactRepository.SearchContact(m => m.Address == value && m.OwnerId == ownerId);
                 case "email":
-                    return _unitOfWork.ContactRepository.SearchContact(m => m.Email == value);
+                    return _unitOfWork.ContactRepository.SearchContact(m => m.Email == value && m.OwnerId == ownerId);
                 case "name":
-                    return _unitOfWork.ContactRepository.SearchContact(m => m.Name == value);
+                    return _unitOfWork.ContactRepository.SearchContact(m => m.Name == value && m.OwnerId == ownerId);
                 default:
                     return null;
             }
+        }
+
+        public void Add(ContactModel model)
+        {
+            if (SearchByKey(model.OwnerId, "phone", model.PhoneNumber) != null || SearchByKey(model.OwnerId, "name", model.Name) != null)
+                throw new Exception("Cannot Added Contact. There is record with this phone number or name!");
+            base.Add(model);
         }
     }
 }

@@ -25,10 +25,10 @@ namespace Contact.API.Controllers
             var contacts = _contactService.GetContactsByOwner(ownerId);
             return Ok(contacts);
         }
-        [HttpGet("{key}/{value}")]
-        public IActionResult SearchContact(string key, string value)
+        [HttpGet("{ownerId}/{key}/{value}")]
+        public IActionResult SearchContact(int ownerId, string key, string value)
         {
-            var contact = _contactService.SearchByKey(key,value);
+            var contact = _contactService.SearchByKey(ownerId, key,value);
             if (contact is null) return NotFound("Contact Is Not Found");
             return Ok(contact);
         }
