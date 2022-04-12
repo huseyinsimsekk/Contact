@@ -9,5 +9,8 @@ namespace Contact.Core.Contracts.Services
 {
     public interface IOwnerService : IService<OwnerModel>
     {
+        OwnerModel GetOwnerByContact(int ownerId);
+        void Delete(int id);
+        OwnerModel GetById(int Id);
     }
 }

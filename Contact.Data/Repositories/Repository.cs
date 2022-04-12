@@ -20,12 +20,12 @@ namespace Contact.Data.Repositories
         }
         public void Add(T Entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Add(Entity);
         }
 
         public void Delete(T Entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(Entity);
         }
 
         public T GetById(int Id)
@@ -33,14 +33,9 @@ namespace Contact.Data.Repositories
             return _dbSet.Find(Id);
         }
 
-        public T SingleOrDefault(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(T Entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Update(Entity);
         }
     }
 }

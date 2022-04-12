@@ -9,10 +9,7 @@ namespace Contact.Core.Contracts.Services
 {
     public interface IService<T> where T : class
     {
-        T GetById(int Id);
-        T SingleOrDefault(Expression<Func<T, bool>> predicate);
         void Add(T Entity);
-        void Delete(T Entity);
         void Update(T Entity);
     }
 }

@@ -21,27 +21,14 @@ namespace Contact.Service.Services
         }
         public void Add(T Entity)
         {
-            throw new NotImplementedException();
+            _repository.Add(Entity);
+            _unitOfWork.Commit();
         }
-
-        public void Delete(T Entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public T GetById(int Id)
-        {
-            return _repository.GetById(Id);
-        }
-
-        public T SingleOrDefault(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
+    
         public void Update(T Entity)
         {
-            throw new NotImplementedException();
+            _repository.Update(Entity);
+            _unitOfWork.Commit();
         }
     }
 }

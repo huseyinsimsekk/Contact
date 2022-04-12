@@ -13,9 +13,9 @@ namespace Contact.Data
     public class UnitOfWork : IUnitOfWork
     {
         private readonly MainContext _mainContext;
-        private Repository<ContactModel> _contactRepository;
+        private ContactRepository _contactRepository;
         private Repository<OwnerModel> _ownerRepository;
-        public IRepository<ContactModel> ContactRepository => _contactRepository = _contactRepository ?? new Repository<ContactModel>(_mainContext);
+        public IContactRepository ContactRepository => _contactRepository = _contactRepository ?? new ContactRepository(_mainContext);
 
         public IRepository<OwnerModel> OwnerRepository => _ownerRepository = _ownerRepository ?? new Repository<OwnerModel>(_mainContext);
         public UnitOfWork(MainContext mainContext)

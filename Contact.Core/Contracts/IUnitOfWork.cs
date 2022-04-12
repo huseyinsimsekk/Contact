@@ -10,7 +10,7 @@ namespace Contact.Core.Contracts
 {
     public interface IUnitOfWork
     {
-        IRepository<ContactModel> ContactRepository { get; }
+        IContactRepository ContactRepository { get; }
         IRepository<OwnerModel> OwnerRepository { get; }
         void Commit();
     }
