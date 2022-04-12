@@ -1,4 +1,5 @@
 ﻿using Contact.Core.Contracts.Services;
+using Contact.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,6 +31,27 @@ namespace Contact.API.Controllers
             var contact = _contactService.SearchByKey(key,value);
             if (contact is null) return NotFound("Contact Is Not Found");
             return Ok(contact);
+        }
+
+        [HttpPost]
+        public IActionResult Add([FromBody] ContactModel model)
+        {
+            _contactService.Add(model);
+            return Ok();
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody] ContactModel model)
+        {
+            _contactService.Update(model);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            _contactService.Delete(id);
+            return Ok();
         }
     }
 }
