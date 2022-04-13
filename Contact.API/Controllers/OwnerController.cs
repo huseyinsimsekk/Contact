@@ -1,4 +1,6 @@
-﻿using Contact.Core.Contracts.Services;
+﻿using AutoMapper;
+using Contact.Core.Contracts.Services;
+using Contact.Core.DTOs;
 using Contact.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +16,11 @@ namespace Contact.API.Controllers
     public class OwnerController : ControllerBase
     {
         private readonly IOwnerService _service;
-        public OwnerController(IOwnerService service)
+        private readonly IMapper _mapper;
+        public OwnerController(IOwnerService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet("{id}")]
@@ -24,20 +28,23 @@ namespace Contact.API.Controllers
         {
             var owner = _service.GetOwnerByContact(id);
             if (owner is null) return NotFound("Owner Is Not Found");
-            return Ok(owner);
+            var ownerModel = _mapper.Map<OwnerDto>(owner);
+            return Ok(ownerModel);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] OwnerModel model)
+        public IActionResult Post([FromBody] OwnerDto model)
         {
-            _service.Add(model);
+            var owner = _mapper.Map<OwnerModel>(model);
+            _service.Add(owner);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] OwnerModel model)
+        public IActionResult Update([FromBody] OwnerDto model)
         {
-            _service.Update(model);
+            var owner = _mapper.Map<OwnerModel>(model);
+            _service.Update(owner);
             return Ok();
         }
         [HttpDelete]

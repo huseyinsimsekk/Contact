@@ -5,21 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contact.Core.Models
+namespace Contact.Core.DTOs
 {
-    public class BaseModel
+    public class BaseDto
     {
-        public BaseModel()
-        {
-            IsDeleted = false;
-            CreatedDate = DateTime.Now;
-        }
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? EffectedDate { get; set; }
-        public bool IsDeleted { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
         [EmailAddress]

@@ -45,6 +45,7 @@ namespace Contact.API
             services.AddScoped(typeof(IService<>), typeof(Service<>));
             services.AddScoped<IOwnerService, OwnerService>();
             services.AddScoped<IContactService, ContactService>();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
