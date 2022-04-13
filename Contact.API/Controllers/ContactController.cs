@@ -33,12 +33,12 @@ namespace Contact.API.Controllers
             var model = _mapper.Map<List<ContactDto>>(contacts);
             return Ok(model);
         }
+
         [ServiceFilter(typeof(ContactNotFoundFilter))]
         [HttpGet("{ownerId}/{key}/{value}")]
         public IActionResult SearchContact(int ownerId, string key, string value)
         {
             var contact = _contactService.SearchByKey(ownerId, key, value);
-            if (contact is null) return NotFound("Contact Is Not Found");
             var contactModel = _mapper.Map<ContactUpdateDto>(contact);
             return Ok(contactModel);
         }

@@ -28,8 +28,8 @@ namespace Contact.API.Filters
             }
 
             int ownerId = (int)parameters[0];
-            string value = (string)parameters[1];
-            string key = (string)parameters[2];
+            string key = (string)parameters[1];
+            string value = (string)parameters[2];
             var book = _service.SearchByKey(ownerId, key, value);
          
             if (book != null)
