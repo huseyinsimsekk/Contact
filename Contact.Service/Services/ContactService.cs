@@ -36,13 +36,13 @@ namespace Contact.Service.Services
             switch (key.ToLower())
             {
                 case "phone":
-                    return _unitOfWork.ContactRepository.SearchContact(m => m.PhoneNumber == value && m.OwnerId == ownerId);
+                    return _unitOfWork.ContactRepository.SearchContact(m => m.PhoneNumber == value && m.OwnerId == ownerId && !m.IsDeleted);
                 case "address":
-                    return _unitOfWork.ContactRepository.SearchContact(m => m.Address == value && m.OwnerId == ownerId);
+                    return _unitOfWork.ContactRepository.SearchContact(m => m.Address == value && m.OwnerId == ownerId && !m.IsDeleted);
                 case "email":
-                    return _unitOfWork.ContactRepository.SearchContact(m => m.Email == value && m.OwnerId == ownerId);
+                    return _unitOfWork.ContactRepository.SearchContact(m => m.Email == value && m.OwnerId == ownerId && !m.IsDeleted);
                 case "name":
-                    return _unitOfWork.ContactRepository.SearchContact(m => m.Name == value && m.OwnerId == ownerId);
+                    return _unitOfWork.ContactRepository.SearchContact(m => m.Name == value && m.OwnerId == ownerId && !m.IsDeleted);
                 default:
                     return null;
             }

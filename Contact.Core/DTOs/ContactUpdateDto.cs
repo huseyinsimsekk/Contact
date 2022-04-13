@@ -8,5 +8,6 @@ namespace Contact.Core.DTOs
 {
     public class ContactUpdateDto : BaseUpdateDto
     {
+        public int OwnerId { get; set; }
     }
 }
