@@ -41,9 +41,10 @@ namespace Contact.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] OwnerDto model)
+        public IActionResult Update([FromBody] OwnerUpdateDto model)
         {
             var owner = _mapper.Map<OwnerModel>(model);
+            owner.EffectedDate = DateTime.Now;
             _service.Update(owner);
             return Ok();
         }

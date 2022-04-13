@@ -37,7 +37,7 @@ namespace Contact.API.Controllers
         {
             var contact = _contactService.SearchByKey(ownerId, key, value);
             if (contact is null) return NotFound("Contact Is Not Found");
-            var contactModel = _mapper.Map<ContactDto>(contact);
+            var contactModel = _mapper.Map<ContactUpdateDto>(contact);
             return Ok(contactModel);
         }
 
@@ -50,7 +50,7 @@ namespace Contact.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] ContactDto model)
+        public IActionResult Update([FromBody] ContactUpdateDto model)
         {
             var contact = _mapper.Map<ContactModel>(model);
             _contactService.Update(contact);

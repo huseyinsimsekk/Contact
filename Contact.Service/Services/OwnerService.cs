@@ -29,6 +29,7 @@ namespace Contact.Service.Services
             var model = GetById(id);
             if (model is null) return;
             model.IsDeleted = true;
+            model.CreatedDate = DateTime.Now;
             _unitOfWork.Commit();
         }
 

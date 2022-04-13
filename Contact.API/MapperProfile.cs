@@ -14,6 +14,8 @@ namespace Contact.API
         {
             CreateMap<OwnerDto, OwnerModel>().ReverseMap();
             CreateMap<ContactDto, ContactModel>().ReverseMap();
+            CreateMap<OwnerUpdateDto, OwnerModel>().ReverseMap();
+            CreateMap<ContactUpdateDto, ContactModel>().ReverseMap();
         }
     }
 }
