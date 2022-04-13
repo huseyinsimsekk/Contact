@@ -51,7 +51,7 @@ namespace Contact.Service.Services
         public void Add(ContactModel model)
         {
             if (SearchByKey(model.OwnerId, "phone", model.PhoneNumber) != null || SearchByKey(model.OwnerId, "name", model.Name) != null)
-                throw new Exception("Cannot Added Contact. There is record with this phone number or name!");
+                throw new Exception("Cannot Added Contact!");
             base.Add(model);
         }
     }

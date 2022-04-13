@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Contact.API.Filters;
 using Contact.Core.Contracts.Services;
 using Contact.Core.DTOs;
 using Contact.Core.Models;
@@ -32,6 +33,7 @@ namespace Contact.API.Controllers
             var model = _mapper.Map<List<ContactDto>>(contacts);
             return Ok(model);
         }
+        [ServiceFilter(typeof(ContactNotFoundFilter))]
         [HttpGet("{ownerId}/{key}/{value}")]
         public IActionResult SearchContact(int ownerId, string key, string value)
         {
@@ -46,7 +48,7 @@ namespace Contact.API.Controllers
         {
             var contact = _mapper.Map<ContactModel>(model);
             _contactService.Add(contact);
-            return Ok("Contact Created!");
+            return NoContent();
         }
 
         [HttpPut]
@@ -54,14 +56,14 @@ namespace Contact.API.Controllers
         {
             var contact = _mapper.Map<ContactModel>(model);
             _contactService.Update(contact);
-            return Ok("Contact Updated!");
+            return NoContent();
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
             _contactService.Delete(id);
-            return Ok("Contact Deleted!");
+            return NoContent();
         }
 
     }
