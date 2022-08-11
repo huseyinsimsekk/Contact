@@ -34,11 +34,13 @@ namespace Contact.API.Controllers
             return Ok(model);
         }
 
-        [ServiceFilter(typeof(ContactNotFoundFilter))]
-        [HttpGet("{ownerId}/{key}/{value}")]
         public IActionResult SearchContact(int ownerId, string key, string value)
         {
             var contact = _contactService.SearchByKey(ownerId, key, value);
+            if (contact is null)
+            {
+                return NotFound();
+            }
             var contactModel = _mapper.Map<ContactUpdateDto>(contact);
             return Ok(contactModel);
         }
